@@ -1,0 +1,310 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: calibri;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #86b0ca;
+}
+section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 5%;
+  flex-flow: wrap;
+}
+/* receitas, despesas e histórico */
+.info-container {
+  display: flex;
+  flex-direction: column;
+  width: 15em;
+  gap: 10px;
+  border-radius: 20px;
+  background: #86b0ca;
+  box-shadow: 8px 8px 10px #7296ac, -8px -8px 10px #9acae8;
+}
+.rec-des-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 5em;
+  font-weight: 600;
+  border-radius: 0.5em 0.5em 0 0;
+  padding: 0.1em;
+  background: #344955;
+}
+.incomes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  font-size: 1em;
+  gap: 0.5em;
+  color: #7ffba4;
+  border-right: 1px solid #70707040;
+}
+
+#incomeValue {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 5em;
+}
+
+#expenseValue {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 5em;
+}
+
+.expenses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  gap: 0.5em;
+  font-size: 1em;
+  color: #ff9696;
+}
+.hist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  padding: 10px 0;
+  background: #86b0ca;
+}
+.title-hist {
+  text-align: center;
+  width: 80%;
+  font-size: 1em;
+  border-bottom: 1px solid #70707040;
+}
+.container-list-hist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 12em;
+  overflow-y: scroll;
+}
+
+.container-list-hist::-webkit-scrollbar {
+  width: 3px;
+}
+
+.container-list-hist::-webkit-scrollbar-thumb {
+  background: #344955;
+  border-radius: 20px;
+}
+
+.green-hist {
+  display: flex;
+  justify-content: space-between;
+  max-width: 14em;
+  border: 1px solid #32ac57;
+  gap: 5px;
+  position: relative;
+  padding-left: 5px;
+  background-color: #fff;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.red-hist {
+  display: flex;
+  justify-content: space-between;
+  max-width: 14em;
+  border: 1px solid #cf3939;
+  gap: 5px;
+  position: relative;
+  padding-left: 5px;
+  background-color: #fff;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.green-hist > :first-child {
+  min-width: 8em;
+}
+.red-hist > :first-child {
+  min-width: 8em;
+}
+.green-hist p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 5em;
+}
+
+.red-hist p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 5em;
+}
+.div-ref-green {
+  width: 3px;
+  background-color: #32ac57;
+}
+.red-container {
+  border: 1px solid #cf3939;
+}
+.div-ref-red {
+  width: 3px;
+  background-color: #cf3939;
+}
+
+.clean-button-green {
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  right: 5px;
+  height: 15px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0px 3px;
+  margin-top: 2px;
+  border-radius: 2px;
+  background-color: #cf3939;
+  transition: all 0.3s ease;
+}
+
+.clean-button-red {
+  display: flex;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  right: 5px;
+  height: 15px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0px 3px;
+  margin-top: 2px;
+  border-radius: 2px;
+  background-color: #cf3939;
+  transition: all 0.3s ease;
+}
+
+.green-hist:hover .clean-button-green {
+  visibility: visible;
+  opacity: 1;
+}
+
+.red-hist:hover .clean-button-red {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* saldo atual */
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 1em;
+  border-radius: 20px;
+  background: #344955;
+  box-shadow: 8px 8px 10px #7296ac, -8px -8px 10px #9acae8;
+}
+.main-title {
+  color: #91c0ff;
+}
+.value-balance {
+  font-size: x-large;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 5em;
+  color: #fff;
+}
+/* adição de transação */
+.add-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 10px;
+  gap: 2em;
+  border-radius: 20px;
+  background: #86b0ca;
+  box-shadow: 8px 8px 10px #7296ac, -8px -8px 10px #9acae8;
+}
+.title-add-trans {
+  color: #171717;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.input-values {
+  width: 100%;
+  font-size: 1.1em;
+}
+.input-name {
+  width: 100%;
+  height: 2em;
+  border: 1px solid #70707080;
+  padding-left: 5px;
+  outline: none;
+}
+.input-valor {
+  width: 100%;
+  height: 2em;
+  border: 1px solid #70707080;
+  padding-left: 5px;
+  outline: none;
+}
+.button-add {
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  background-color: #9c4ecf;
+}
+.button-add:hover {
+  background-color: #a76bcf;
+}
+.org-colors-container {
+  background-color: #344955;
+  padding: 0.2em;
+  color: white;
+  font-size: 1.1em;
+  border-radius: 0.4em;
+}
+.orgs {
+  display: flex;
+  gap: 3em;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon-org {
+  width: 50px;
+  height: 15px;
+  border-radius: 4px;
+}
+.green-icon {
+  background-color: #1dc350;
+}
+.red-icon {
+  background-color: #ff6161;
+}
+@media screen and (max-width: 440px) {
+  section {
+    overflow-y: scroll;
+  }
+  .main-container {
+    order: -1;
+    margin-top: 20px;
+  }
+}

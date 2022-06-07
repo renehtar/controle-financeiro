@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gerenciador de conta</title>
+  </head>
+  <body>
+    <section>
+      <!-- receitas, despesas e histórico -->
+      <div class="info-container">
+        <div class="rec-des-container">
+          <div class="incomes">
+            <p>RECEITAS</p>
+            <p id="incomeValue">R$ 0.00</p>
+          </div>
+          <div class="expenses">
+            <p>DESPESAS</p>
+            <p id="expenseValue">R$ 0.00</p>
+          </div>
+        </div>
+        <div class="hist">
+          <h3 class="title-hist">HISTÓRICO</h3>
+          <ul class="container-list-hist" id="containerListHist">
+
+          </ul>
+        </div>
+      </div>
+      <!-- saldo atual -->
+      <div class="main-container">
+        <h1 class="main-title">SALDO ATUAL</h1>
+        <p class="value-balance" id="valueBalance">R$ 0.00</p>
+      </div>
+      <!-- adição de transação -->
+      <div class="add-container">
+        <h3 class="title-add-trans">ADICIONAR TRANSAÇÃO</h3>
+        <div class="input-values">
+          <p>Nome:</p>
+          <input
+            name="valueCamp"
+            class="input-name"
+            type="text"
+            placeholder="Nome da transação"
+            autocomplete="none"
+            autofocus
+          />
+          <p>Valor R$:</p>
+          <input
+            name="valueCamp"
+            class="input-valor"
+            type="number"
+            placeholder="Ex: 10.00, -10.00"
+            title="Use - para valor negativo."
+          />
+        </div>
+        <button class="button-add" id="addItem">Adicionar</button>
+        <div class="org-colors-container">
+          <div class="org-green orgs">
+            <p>RECEITAS +</p>
+            <small class="green-icon icon-org"></small>
+          </div>
+          <div class="org-red orgs">
+            <p>DESPESAS -</p>
+            <small class="red-icon icon-org"></small>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="./script.js"></script>
+  </body>
+</html>
