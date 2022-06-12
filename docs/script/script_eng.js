@@ -1,3 +1,4 @@
+// Database
 let incomeDatabase = []
 let expenseDatabase = []
 let positive = []
@@ -14,12 +15,15 @@ const setPositive = (positive) => localStorage.setItem('positiveStorage',JSON.st
 const getNegative =() => hasInitialDataNegative ? JSON.parse(localStorage.getItem('negativeStorage')) : [];
 const setNegative = (negative)=> localStorage.setItem('negativeStorage',JSON.stringify(negative));
 
+// Generate items when adding transaction
 const generateIncomeItem = (name, value, index) => {
     let incomeItem = document.createElement('li')
     incomeItem.classList.add('green-hist')
     incomeItem.innerHTML = `
         <p title="${name}">${name}</p>
-        <p title="R$ +${value}">R$ +${value}</p>
+        <p title=" +${Number(value).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}">
+            ${Number(value).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+        </p>
         <span class="clean-button-green" data-index=${index}>X</span>
         <small class="div-ref-green"></small>`
     document.querySelector('section div div.hist ul.container-list-hist').appendChild(incomeItem);
@@ -29,11 +33,15 @@ const generateExpenseItem = (name, value, index) => {
     expenseItem.classList.add('red-hist')
     expenseItem.innerHTML = `
         <p title="${name}">${name}</p>
-        <p title="R$${value}">R$ ${value}</p>
+        <p title=" +${Number(value).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}">
+            ${Number(value).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}
+        </p>
         <span class="clean-button-red" data-index=${index}>X</span>
         <small class="div-ref-red"></small>`
     document.querySelector('section div div.hist ul.container-list-hist').appendChild(expenseItem);
 }
+
+// Makes items not repeat/duplicate
 const clean = () => {
     let income = document.querySelector('section div div ul.container-list-hist');
     let expense = document.querySelector('section div div ul.container-list-hist');
@@ -45,8 +53,11 @@ const clean = () => {
         expense.removeChild(expense.lastChild);
     }
 }
+
+// "Refresh" the screen
 const refresh = () => {
     clean()
+    // Database connection
     let incomeDatabase = getIncomeDatabase();
     let expenseDatabase = getExpenseDatabase();
     let displayIncome = hasInitialDataPositive ? JSON.parse(localStorage.getItem('positiveStorage')).reduce(function (accumulator, currentValor) {
@@ -57,22 +68,29 @@ const refresh = () => {
         }, 0) : 0;
     let displayTotal = displayIncome + displayExpense
         
-    document.querySelector('p#incomeValue').innerHTML = `<p id="incomeValue" title="${displayIncome.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}">${displayIncome.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>`
-    document.querySelector('p#expenseValue').innerHTML = `<p id="expenseValue" title="${displayExpense.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}">${displayExpense.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>`
-    document.querySelector('p#valueBalance').innerHTML = `<p id="valueBalance" title="${displayTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}">${displayTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>`
+    // Put the content of the database in the HTML
+    document.querySelector('p#incomeValue').innerHTML = `<p id="incomeValue" title="${displayIncome.toLocaleString('en-US' ,{style: 'currency', currency: 'USD'})}">
+	    ${displayIncome.toLocaleString('en-US' ,{style: 'currency', currency: 'USD'})}</p>`
+    document.querySelector('p#expenseValue').innerHTML = `<p id="expenseValue" title="${displayExpense.toLocaleString('en-US' ,{style: 'currency', currency: 'USD'})}">
+	    ${displayExpense.toLocaleString('en-US' ,{style: 'currency', currency: 'USD'})}</p>`
+    document.querySelector('p#valueBalance').innerHTML = `<p id="valueBalance" title="${displayTotal.toLocaleString('en-US' ,{style: 'currency', currency: 'USD'})}">
+	    ${displayTotal.toLocaleString('en-US' ,{style: 'currency', currency: 'USD'})}</p>`
 
+    // Pass through database arrays
     incomeDatabase.forEach((incomeItem, index) => generateIncomeItem(incomeItem.name, incomeItem.value, index))
     expenseDatabase.forEach((expenseItem, index) => generateExpenseItem(expenseItem.name, expenseItem.value, index))   
 }
+
 const insertItem = (event) => {
     let element = event.target;
     let name = document.querySelector('section div div input.input-name').value;
     let valor = document.querySelector('section div div input.input-valor').value;
     
     if (name === "" || valor === "") {
-        alert('A transação precisa de um nome e de um valor')
+        alert('The transaction needs a name and a value')
         return
     }
+    // Add item with positive value
     else if (element.id === 'addItem' & valor.indexOf('-')) {
         let incomeDatabase = getIncomeDatabase();
         let positive = getPositive();
@@ -83,6 +101,7 @@ const insertItem = (event) => {
         refresh()
         document.location.reload(true)
     } 
+    // Add item with negative value
     else if (element.id === 'addItem' && valor.includes('-')) {
         let expenseDatabase = getExpenseDatabase();
         let negative = getNegative();
@@ -94,10 +113,12 @@ const insertItem = (event) => {
         document.location.reload(true)
     }
 }
+
 const deleteItem = (event) => {
     let element = event.target;
     let index =  element.dataset.index;
 
+    // Delete positive item
     if (element.className === "clean-button-green") {
         let incomeDatabase = getIncomeDatabase();
         let positive = getPositive();
@@ -107,6 +128,7 @@ const deleteItem = (event) => {
         setPositive(positive)
         refresh()
     }
+    // Delete negative item
     else if (element.className === "clean-button-red") {
         let expenseDatabase = getExpenseDatabase();
         let negative = getNegative();
@@ -117,12 +139,16 @@ const deleteItem = (event) => {
         refresh()
     }
 }
+
+// Allows items to be added with the 'Enter' key
 document.getElementsByName("valueCamp").forEach((i)=>i.addEventListener('keydown', (event)=>{
     if(event.code.includes('Enter')){
         let enter = {target: document.querySelector('section div button#addItem')}
         insertItem(enter)
     }
 }))
+
+// Click event listener for insert and delete items functions.
 document.querySelector('section div button#addItem').addEventListener('click', insertItem)
 document.querySelector('section div div ul.container-list-hist').addEventListener('click', deleteItem)
 refresh()

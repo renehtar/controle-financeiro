@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <link rel="stylesheet" href="../style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Manager</title>
+  </head>
+  <body>
+    <section>
+      <div class="main-container">
+<!-- Historic -->
+        <div class="info-container">
+          <div class="hist">
+            <h3 class="title-hist">HISTORIC</h3>
+            <ul class="container-list-hist" id="containerListHist">
+
+            </ul>
+          </div>
+        </div>
+<!-- Incomes, expenses and current balance -->
+        <div class="value-container">
+          <div class="rec-des-container">
+            <div class="incomes">
+              <p>INCOMES</p>
+              <p id="incomeValue">$ 0.00</p>
+            </div>
+            <div class="expenses">
+              <p>EXPENSES</p>
+              <p id="expenseValue">$ 0.00</p>
+            </div>
+          </div>
+          <div class="value-area">
+            <h1 class="value-title">CURRENT BALANCE</h1>
+            <p id="valueBalance">$ 0.00</p>
+          </div>
+<!-- Add transation -->
+          <div class="add-container">
+            <h3 class="title-add-trans">ADD TRANSATION</h3>
+            <div class="input-values">
+              <div class="input-fields">
+
+                <label for="inputName" >Name:</label>
+                <input name="valueCamp" 
+                max="50" 
+                class="input-name" 
+                id="inputName" type="text" 
+                placeholder="Transation name" 
+                autocomplete="none" 
+                autofocus/>
+
+                <label for="inputValue" >Value:</label>
+                <input name="valueCamp" 
+                max="999999999999" 
+                class="input-valor" 
+                id="inputValue" 
+                type="number" 
+                placeholder="Ex: 10.00, -10.00" 
+                title="Use - for negative value."/>
+             </div>
+            </div>
+            <button class="button-add" id="addItem">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- Switch language -->
+    <footer>
+      <div class="footer">
+        <p class="language">
+          <a class="link-lang" href="./index_pt-br.html">Portuguese</a>
+          | 
+          <a class="link-lang" style="color: rgb(73, 112, 219);" href="./index_eng.html">English</a>
+        </p>
+      </div>
+    </footer>
+    <script src="../script/script_eng.js"></script>
+  </body>
+</html>
