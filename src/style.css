@@ -23,29 +23,26 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10%;
+  height: calc(90vh);
   width: 100%;
   flex-flow: wrap;
 }
 .main-container {
-  width: 700px;
-  height: 500px;
-  background-color: red;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  border-radius: 20px 20px 20px 20px;
   background: #2c2d47;
-  border: groove;
 }
 
 /*---------------------------------------------Historic--------------------------------------------------- */
 .info-container {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 30%;
+  min-width: 16rem;
   height: 100%;
   gap: 10px;
-  border-radius: 17px 0px 0px 17px;
   background: #ced2f5;
 }
 .hist {
@@ -54,7 +51,7 @@ section {
   align-items: center;
   gap: 10px;
   padding: 10px 0;
-  height: 80%;
+  height: 100%;
   overflow-y: scroll;
 }
 .title-hist {
@@ -70,11 +67,12 @@ section {
   gap: 10px;
 }
 .hist::-webkit-scrollbar {
-  width: 3px;
+  width: 5px;
 }
 
 .hist::-webkit-scrollbar-thumb {
-  background: #344955;
+  background: #ffffff;
+  border: solid 0.5px #000;
   border-radius: 20px;
 }
 
@@ -103,10 +101,10 @@ section {
   white-space: nowrap;
 }
 .green-hist > :first-child {
-  min-width: 9em;
+  min-width: 8em;
 }
 .red-hist > :first-child {
-  min-width: 9em;
+  min-width: 8em;
 }
 .green-hist p,
 .red-hist p {
@@ -159,7 +157,7 @@ section {
 /*--------------------------------------Incomes, expenses and current balance-----------------------------------*/
 .value-container {
   height: 100%;
-  width: 60%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -173,7 +171,6 @@ section {
   height: 30%;
   width: 100%;
   font-weight: 600;
-  border-radius: 17px;
 }
 .incomes {
   display: flex;
@@ -235,13 +232,24 @@ section {
   width: 100%;
   align-items: center;
   flex-direction: column;
-  padding: 10px 10px;
+  padding: 10px 0px;
   gap: 2em;
-  border-radius: 0px 0px 20px 0px;
   background: #b7bcf1;
   border-left: 7.5px dashed #ced2f5;
   border-top: 7.5px dashed #2c2d47;
+  overflow-y: auto;
 }
+
+.add-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.add-container::-webkit-scrollbar {
+  background: #ffffff;
+  border: solid 0.5px #000;
+  border-radius: 20px;
+}
+
 .title-add-trans {
   color: #3f3f3f;
   white-space: nowrap;
@@ -249,7 +257,7 @@ section {
 .input-values {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 50%;
   font-size: 1.1em;
 }
 div.input-values {
@@ -273,7 +281,7 @@ div.input-values {
 }
 .button-add {
   height: 30px;
-  width: 100%;
+  width: 50%;
   border: none;
   color: #fff;
   padding: 5px 10px;
@@ -298,10 +306,44 @@ footer {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 6rem;
-  background-color: #a6acf1;
+  height: 10vh;
+  background: #2c2d47;
 }
 .link-lang {
   text-decoration: none;
-  color: rgb(50, 50, 182);
+  color: rgb(50, 100, 200);
+}
+
+/*-------------------------------------------------media query 520px--------------------------------------------*/
+@media (max-width: 520px) {
+  .main-container{
+    flex-direction: column;
+  }
+  .add-container {
+    gap: 10px;
+  }
+  .value-container {
+    height: 70%;
+  }
+  .info-container {
+    height: 30%;
+  }
+  .info-container,
+  .value-container{
+    width: 100%;
+  }
+
+  .info-container{
+    order: 1;
+  }
+}
+
+@media (max-height: 420px) {
+  .add-container {
+    gap: 10px;
+  }
+  .value-container {
+    gap: 0px;
+  }
+
 }
