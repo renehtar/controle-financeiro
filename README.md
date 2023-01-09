@@ -8,7 +8,7 @@
 
 <p>O usuário poderá gerenciar sua vida financeira, adicionando ou removendo fundos. O programa mostrará a renda total, o total de despesas e a soma de ambas no saldo atual.</p>
 
-<img src="./assets/demo/inicio.png" alt="Início">
+<img src="/src/assets/demo/inicio.png" alt="Início">
 
 <p>Para adicionar um fundo escreva o nome da transação e o valor dela(para valor negativo, coloque "-" antes do valor). Após adicionar uma transação, ela será registrada no histórico. Caso queira remover a transação do histórico, passe o mouse sobre a transação e clique no botão X que aparecerá.</p>
 

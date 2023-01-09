@@ -8,7 +8,7 @@
 
 <p>The user will be able to manage his financial life, adding or removing funds. The program will show the total income, total expenses and the sum of both in the current balance.</p>
 
-<img src="./assets/demo/home.png" alt="Home">
+<img src="/src/assets/demo/home.png" alt="Home">
 
 <p>To add a fund write the name of the transaction and its amount (for negative amount, put "-" before the amount). After adding a transaction, it will be recorded in the history. If you want to remove the transaction from the history, hover over the transaction and click on the X button that will appear.</p>
 
